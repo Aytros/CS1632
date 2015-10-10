@@ -2,32 +2,32 @@ import java.util.*;
 import java.lang.*;
 
 public class Geography{
-	private static Node[] locations = {
-		new Node("Mall", new String[][]{{"Bookstore", "Fourth Ave."}, {"Coffee Shop", "Meow St."}}),
-		new Node("Bookstore", new String[][]{{"Outside City", "Fourth Ave."}, {"University", "Chirp St."}}),
-		new Node("Coffee Shop", new String[][]{{"Mall", "Meow St."}, {"Outside City", "Fifth Ave."}}),
-		new Node("University", new String[][]{{"Coffee Shop", "Fifth Ave."}, {"Bookstore", "Chirp St."}}),
-		new Node("Outside City", new String[][]{{"Mall", "Fourth Ave."}, {"University", "Fifth Ave."}}),
-	}
+	private static HashMap<String, String[][]> map = new HashMap<String, String[][]>();
+	private static String[] locs = {"Mall", "Bookstore", "Coffee Shop", "University", "Outside City"};
+	private static String[] routes = {"Fourth Ave.", "Fifth Ave.", "Chirp St.", "Meow St."};
 	private static Random rand;
 
 	public Geography(int n){
 		rand = new Random(n);
+		String[][] temp = {{"Bookstore", "Fourth Ave."}, {"Coffee Shop", "Meow St."}};
+		map.put("Mall", temp);
+		String[][] temp2 = {{"Outside City", "Fourth Ave."}, {"University", "Chirp St."}};
+		map.put("Bookstore", temp2);
+		String[][] temp3 = {{"Mall", "Meow St."}, {"Outside City", "Fifth Ave."}};
+		map.put("Coffee Shop", temp3);
+		String[][] temp4 = {{"Coffee Shop", "Fifth Ave."}, {"Bookstore", "Chirp St."}};
+		map.put("University", temp4);
+		String[][] temp5 = {{"Mall", "Fourth Ave."}, {"University", "Fifth Ave."}};
+		map.put("Outside City", temp5);
 	}
 
 	public static String getStart(){
-		Node start = locations[rand.nextInt(5)];
-		return start.getLoc();
+		String start = locs[rand.nextInt(5)];
+		return start;
 	}
 
 	public static String[][] getNext(String loc){
-		String[][] next = new String[][];
-		for (int i = 0; i < locations.length; ++i){
-			Node temp = locations[i];
-			if (temp.getLoc() == loc){
-				next = temp.getDest();
-			}
-		}
+		String[][] next = map.get(loc);
 		return next;
 	}
 
