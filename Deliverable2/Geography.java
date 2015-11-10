@@ -4,7 +4,6 @@ import java.lang.*;
 public class Geography{
 	private static HashMap<String, String[][]> map = new HashMap<String, String[][]>();
 	private static String[] locs = {"Mall", "Bookstore", "Coffee Shop", "University", "Outside City"};
-	private static String[] routes = {"Fourth Ave.", "Fifth Ave.", "Chirp St.", "Meow St."};
 	private static Random rand;
 
 	public Geography(int n){
